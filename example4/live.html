@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+    <title>FeatherTest</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<p>Open the console and use $.ajax</p>
+<label id="test_label"></label>
+<script src="./prebuilt/dollar.js"></script>
+<script src="./prebuilt/dollar.ajax.js"></script>
+<script>
+    (function () {
+        $(document).ready(
+            $.ajax({
+                url: 'https://httpbin.org/get',
+                data: {abc: 123},
+                success: function () {
+                    throw new Error("Test Error");
+                },
+                error: function (err) {
+                    let label = document.getElementById('test_label');
+                    label.innerText = err.toString();
+                },
+            })
+        );
+    })();
+</script>
+</body>
+</html>
